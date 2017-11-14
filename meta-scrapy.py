@@ -2,9 +2,7 @@ import sys
 import requests
 from bs4 import BeautifulSoup
 
-if len(sys.argv) != 2:
-        print("Usage: scrape-meta-image.py <Link>")
-else:
+def main(link):
     result = requests.get(link)
     soup = BeautifulSoup(result.content, "html.parser")
 
@@ -26,4 +24,9 @@ else:
     else:
         meta_image = None
 
-    print(meta_title, meta_description, meta_image)
+    return meta_title, meta_description, meta_image
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: scrape-meta-image.py <Link>")
+    main(sys.argv[1])
