@@ -8,4 +8,8 @@ setup(name='metascrapy',
       author_email='vivekkalyansk@gmail.com',
       license='MIT',
       packages=['metascrapy'],
+      install_requires=[
+          'requests',
+          'beautifulsoup4'
+      ],
       zip_safe=False)
