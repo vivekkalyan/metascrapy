@@ -3,8 +3,18 @@ from bs4 import BeautifulSoup
 
 def meta_data(link):
     result = requests.get(link)
-    soup = BeautifulSoup(result.content, "html.parser")
 
+    try:
+        x_frame_options = result.headers['X-Frame-Options']
+    except:
+        x_frame_options = None
+
+    if x_frame_options:
+        iframe_allowed = False
+    else:
+        iframe_allowed = True
+
+    soup = BeautifulSoup(result.content, "html.parser")
     soup_title = soup.find(property='og:title')
     if soup_title:
         meta_title = soup_title['content']
@@ -23,4 +33,4 @@ def meta_data(link):
     else:
         meta_image = None
 
-    return meta_title, meta_description, meta_image
+    return meta_title, meta_description, meta_image, iframe_allowed
