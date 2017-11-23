@@ -9,11 +9,6 @@ def meta_data(link):
     except:
         x_frame_options = None
 
-    if x_frame_options:
-        iframe_allowed = False
-    else:
-        iframe_allowed = True
-
     soup = BeautifulSoup(result.content, "html.parser")
     soup_title = soup.find(property='og:title')
     if soup_title:
@@ -33,4 +28,4 @@ def meta_data(link):
     else:
         meta_image = None
 
-    return meta_title, meta_description, meta_image, iframe_allowed
+    return meta_title, meta_description, meta_image, x_frame_options
