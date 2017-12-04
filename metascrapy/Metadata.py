@@ -1,5 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
+import re
+import functools
 
 class Metadata(object):
     """docstring for Metadata"""
@@ -11,6 +13,7 @@ class Metadata(object):
         self.description = None
         self.image = None
         self.x_frame_options = None
+        self.num_words = None
 
     def scrape(self, link):
         self.__init_values()
@@ -40,3 +43,7 @@ class Metadata(object):
         else:
             self.image = None
 
+        soup_paragraphs = soup.find_all("p",string=re.compile("\w+"))
+        self.num_words = 0
+        for sentence in soup_paragraphs:
+            self.num_words += len(sentence.string.split())
