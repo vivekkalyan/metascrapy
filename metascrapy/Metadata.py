@@ -14,6 +14,7 @@ class Metadata(object):
         self.image = None
         self.x_frame_options = None
         self.num_words = None
+        self.lang = None
 
     def scrape(self, link):
         self.__init_values()
@@ -47,3 +48,12 @@ class Metadata(object):
         self.num_words = 0
         for sentence in soup_paragraphs:
             self.num_words += len(sentence.string.split())
+
+        soup_html = soup.find('html')
+        if soup_html:
+            try:
+                self.lang = soup_html['lang']
+            except:
+                self.lang = None
+        else:
+            self.lang = None
