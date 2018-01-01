@@ -36,7 +36,11 @@ class Metadata(object):
         if soup_description:
             self.description = soup_description['content']
         else:
-            self.description = soup.find('p').string
+            soup_first_paragraph = soup.find('p')
+            if soup_first_paragraph:
+                self.description = soup_first_paragraph.string
+            else:
+                self.description = None
 
         soup_image = soup.find(property='og:image')
         if soup_image:
