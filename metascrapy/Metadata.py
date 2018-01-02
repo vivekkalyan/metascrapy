@@ -16,6 +16,17 @@ class Metadata(object):
         self.num_words = None
         self.lang = None
 
+    def parse(self, content, funcs):
+        for func in funcs:
+            try:
+                output = func(content)
+                break
+            except:
+                pass
+        else:
+            output = None
+        return output
+
     def scrape(self, link):
         self.__init_values()
         result = requests.get(link)
@@ -26,11 +37,12 @@ class Metadata(object):
             pass
 
         soup = BeautifulSoup(result.content, "html.parser")
-        soup_title = soup.find(property='og:title')
-        if soup_title:
-            self.title = soup_title['content']
-        else:
-            self.title = soup.title.string
+
+        funcs_title = [
+            lambda x: x.find(property='og:title')['content'],
+            lambda x: x.title.string
+        ]
+        self.title = self.parse(soup, funcs_title)
 
         soup_description = soup.find(property='og:description')
         if soup_description:
