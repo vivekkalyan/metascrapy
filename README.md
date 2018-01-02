@@ -22,5 +22,6 @@ scraper.title
 * `image`
 * `x_frame_options`
 * `num_words`
+* `lang`
 
 Submit an issue or PR for more!
