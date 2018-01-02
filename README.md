@@ -25,3 +25,9 @@ scraper.title
 * `lang`
 
 Submit an issue or PR for more!
+
+## To upload to PyPI
+
+`python setup.py sdist bdist_wheel`
+
+`twine upload dist/*`
