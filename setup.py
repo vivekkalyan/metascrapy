@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='metascrapy',
-      version='0.3',
+      version='0.4',
       description='Scrapes meta data from a link with python',
       url='https://github.com/bowsplinter/metascrapy',
       author='Vivek Kalyan',
