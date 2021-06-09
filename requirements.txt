@@ -3,7 +3,7 @@ certifi==2017.11.5
 chardet==3.0.4
 idna==2.6
 metascrapy==0.1
-pip==9.0.1
+pip==19.2
 pkginfo==1.4.1
 requests==2.18.4
 requests-toolbelt==0.8.0
