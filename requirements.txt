@@ -11,4 +11,4 @@ setuptools==36.7.2
 tqdm==4.19.4
 twine==1.9.1
 urllib3==1.22
-wheel==0.30.0
+wheel==0.38.1
